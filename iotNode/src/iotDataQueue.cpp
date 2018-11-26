@@ -1,5 +1,6 @@
+#include "include/iotDataQueue.h"
+
 #include <iostream>
-#include "iotDataQueue.h"
 
 using namespace std;
 
@@ -21,7 +22,7 @@ void iotDataQueue::init()
 //initialise the queue
 void iotDataQueue::qput(int i)
 {
-    if(sloc==100){
+    if(sloc==10){
         cout << "queue is full. \n";
         return;
     }
