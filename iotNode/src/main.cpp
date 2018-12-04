@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "include/dataQueue.h"
 #include "include/iotDataQueue.h"
 #include "include/sensor.h"
 
@@ -8,7 +9,8 @@ using namespace std;
 
 int main()
 {
-	MockTempSensor tempSensor;
+
+	//MockTempSensor tempSensor;
 	// read from sensor
 	// check if queue is full
 		// if full
@@ -17,6 +19,22 @@ int main()
 		// if not full
 			// enqueue reading
 
+	/*
+	iotDataQueue temperature;
+
+	temperature.init();
+
+	for(int i=1; i<=11; i++)
+	{
+		temperature.qput(i);
+	}
+
+	for(int i=1; i<=11; i++)
+	{
+		cout << temperature.qget() << "\n";
+	}
+
+	*/
 
 
 	/*
@@ -39,7 +57,7 @@ int main()
     cout << "Contents of Humidity queue: ";
     cout << humidity.qget() << " ";
     cout << humidity.qget() << "\n";
-    */
+	*/
 
     return 0;
 }

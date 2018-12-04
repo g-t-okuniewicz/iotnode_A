@@ -3,12 +3,12 @@
  */
 #include "include/sensor.h"
 
-class MockTempSensor : public Sensor
+class MockTempSensor : Sensor
 {
 public:
 	unsigned int getId()
 	{
-		return m_id;
+		return 0;
 	}
 	int read()
 	{
