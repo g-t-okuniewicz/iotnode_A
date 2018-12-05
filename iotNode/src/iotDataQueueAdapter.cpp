@@ -2,38 +2,52 @@
  * iotDataQueueAdapter.cpp
  */
 
-#include "include/iotDataQueue.h"
 #include "include/iotDataQueueAdapter.h"
-
-#include <iostream>
 
 using namespace std;
 
+int counter;
+
+void IotDataQueueAdapter::init()
+{
+	counter = 0;
+	queue.init();
+}
+
 void IotDataQueueAdapter::enqueue(int i)
 {
-
+	if(counter < QUEUE_SIZE - 1)
+	{
+		queue.qput(i);
+		counter++;
+	}
+	else
+	{
+		cout << "Data Queue full.\n";
+	}
 }
 
 int IotDataQueueAdapter::dequeue()
 {
-	return 0;
+	int i = 0;
+	if(counter > 0)
+	{
+		i = queue.qget();
+		counter--;
+	}
+	else
+	{
+		cout << "Data Queue empty.\n";
+	}
+	return i;
 }
 
 bool IotDataQueueAdapter::isFull()
 {
-	return 0;
+	return counter >= QUEUE_SIZE - 1;
 }
 
 bool IotDataQueueAdapter::isEmpty()
 {
-	return 0;
+	return counter == 0;
 }
-/*
- * void enqueue (int i);
-	int dequeue ();
-	bool isFull ();
-	virtual bool isEmpty();
- */
-
-
-
