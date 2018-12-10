@@ -7,13 +7,13 @@
 
 class Sensor
 {
-	public:
-		Sensor();
-		virtual ~Sensor();
-		virtual int read() = 0;
-	protected:
-		int m_reading;
+public:
+	virtual ~Sensor() = 0;
+	virtual int getReading() = 0;
+	virtual int getId();
+	virtual void setId(int id);
+protected:
+	int id;
 };
-
 
 #endif /* INCLUDE_SENSOR_H_ */

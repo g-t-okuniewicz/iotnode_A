@@ -1,8 +1,5 @@
 /*
  * iotDataQueueAdapter.h
- *
- *  Created on: 4 Dec 2018
- *      Author: gabi
  */
 
 #ifndef INCLUDE_IOTDATAQUEUEADAPTER_H_
@@ -26,6 +23,7 @@ public:
 	bool isEmpty();
 private:
 	iotDataQueue queue;
+	int counter;
 };
 
 

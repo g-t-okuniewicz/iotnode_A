@@ -1,63 +1,63 @@
 #include <iostream>
+#include <time.h>
 
 #include "include/dataQueue.h"
 #include "include/iotDataQueue.h"
-#include "include/sensor.h"
+#include "include/mockTempSensor.h"
+#include "include/mockHumSensor.h"
+#include "include/iotDataQueueAdapter.h"
 
 //this is an example
 using namespace std;
 
+void sendMessage(DataQueue *queue)
+{
+	cout << "Printing the queue with ID " << queue->getId() << ": ";
+	while(!queue->isEmpty())
+	{
+		cout << queue->dequeue() << ", ";
+	}
+	cout << "\n";
+}
+
 int main()
 {
 
-	//MockTempSensor tempSensor;
-	// read from sensor
-	// check if queue is full
-		// if full
-			// output queue
+	MockTempSensor tempSensor;
+	tempSensor.setId(0);
 
-		// if not full
-			// enqueue reading
+	MockHumSensor humSensor;
+	humSensor.setId(1);
 
-	/*
-	iotDataQueue temperature;
 
-	temperature.init();
+	IotDataQueueAdapter tempQueue;
+	tempQueue.init();
+	tempQueue.setId(0);
 
-	for(int i=1; i<=11; i++)
+	IotDataQueueAdapter humQueue;
+	humQueue.init();
+	humQueue.setId(1);
+
+	for(int i=0; i<35; i++)
 	{
-		temperature.qput(i);
+		if(tempQueue.isFull())
+		{
+			cout << "Temperature queue full.\n";
+			sendMessage(&tempQueue);
+			// has to be called to be able to use the iotDataQueue again
+			tempQueue.init();
+		}
+		if(humQueue.isFull())
+		{
+			cout << "Humidity queue full.\n";
+			sendMessage(&humQueue);
+			humQueue.init();
+		}
+		cout << "Reading temperature sensor...\n";
+		tempQueue.enqueue(tempSensor.getReading());
+		cout << "Reading humidity sensor...\n";
+		humQueue.enqueue(humSensor.getReading());
 	}
-
-	for(int i=1; i<=11; i++)
-	{
-		cout << temperature.qget() << "\n";
-	}
-
-	*/
-
-
-	/*
-    iotDataQueue temperature, humidity; //create two queue objects
-
-    temperature.init();
-    humidity.init();
-
-    temperature.qput(10);
-    humidity.qput(19);
-
-    temperature.qput(20);
-    humidity.qput(1);
-    //this is a comment
-    cout << "Contents of Temperature queue: ";
-
-    cout << temperature.qget() << " ";
-    cout << temperature.qget() << "\n";
-
-    cout << "Contents of Humidity queue: ";
-    cout << humidity.qget() << " ";
-    cout << humidity.qget() << "\n";
-	*/
 
     return 0;
 }

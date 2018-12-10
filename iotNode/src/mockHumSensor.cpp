@@ -2,9 +2,9 @@
  * mockTempSensor.cpp
  */
 
-#include "include/mockTempSensor.h"
+#include "include/mockHumSensor.h"
 
-int MockTempSensor::getReading()
+int MockHumSensor::getReading()
 {
 	static int reading = 0;
 	return ++reading;

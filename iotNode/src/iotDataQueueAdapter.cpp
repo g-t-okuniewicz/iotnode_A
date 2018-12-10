@@ -6,8 +6,6 @@
 
 using namespace std;
 
-int counter;
-
 void IotDataQueueAdapter::init()
 {
 	counter = 0;
@@ -16,7 +14,7 @@ void IotDataQueueAdapter::init()
 
 void IotDataQueueAdapter::enqueue(int i)
 {
-	if(counter < QUEUE_SIZE - 1)
+	if(counter < QUEUE_SIZE)
 	{
 		queue.qput(i);
 		counter++;
@@ -44,7 +42,7 @@ int IotDataQueueAdapter::dequeue()
 
 bool IotDataQueueAdapter::isFull()
 {
-	return counter >= QUEUE_SIZE - 1;
+	return counter >= QUEUE_SIZE;
 }
 
 bool IotDataQueueAdapter::isEmpty()
